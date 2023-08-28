@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using ShopQuanAo.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<dbMarketContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Market")));
 
 var app = builder.Build();
 
