@@ -164,6 +164,11 @@ namespace ShopQuanAo.Entities
                 entity.Property(e => e.Salt)
                     .HasMaxLength(10)
                     .IsFixedLength();
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.LocationId)
+                    .HasConstraintName("FK_Customer_Locations");
             });
 
             modelBuilder.Entity<Location>(entity =>

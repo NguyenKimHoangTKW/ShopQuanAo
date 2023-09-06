@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ShopQuanAo.Entities.Customer>
+
+@{
+    ViewData["Title"] = "Danh sách khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-light btn-icon-split" asp-asp-area="Admin" asp-controller="AdminCustomers" asp-action="Create">
+
+            <span class="text bg-gradient-success">Thêm mới</span>
+        </a>
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>FullName</th>
+            <th>Birthday</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>LocationID</th>
+            <th>District</th>
+            <th>Ward</th>
+            <th>CreateDate</th>
+            <th>Password</th>
+            <th>Salt</th>
+            <th>LastLogin</th>
+            <th>Active</th>
+            <th>Avatar</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>FullName</th>
+            <th>Birthday</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>LocationID</th>
+            <th>District</th>
+            <th>Ward</th>
+            <th>CreateDate</th>
+            <th>Password</th>
+            <th>Salt</th>
+            <th>LastLogin</th>
+            <th>Active</th>
+            <th>Avatar</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CustomerId</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Birthday</td>
+                    <td>@item.Address</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.LocationId</td>
+                    <td>@item.District</td>
+                    <td>@item.Ward</td>
+                    <td>@item.CreateDate</td>
+                    <td>@item.Password</td>
+                    <td>@item.Salt</td>
+                    <td>@item.LastLogin</td>
+                    <td>@item.Active</td>
+                    <td>@item.Avatar</td>
+                    <td>
+                        <a class="btn btn-success btn-icon-split" asp-asp-area="Admin" asp-controller="AdminRoles" asp-action="Details" asp-route-id="@item.CustomerId">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            <span class="text">View</span>
+                        </a>
+                        <a class="btn btn-info btn-icon-split" asp-asp-area="Admin" asp-controller="AdminRoles" asp-action="Edit" asp-route-id="@item.CustomerId">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                            <span class="text">Edit</span>
+                        </a>
+                        <a class="btn btn-danger btn-icon-split" asp-asp-area="Admin" asp-controller="AdminRoles" asp-action="Delete" asp-route-id="@item.CustomerId">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            <span class="text">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+    </tbody>
+</table>

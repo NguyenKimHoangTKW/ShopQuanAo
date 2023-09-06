@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ShopQuanAo.Entities.Account>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-light btn-icon-split" asp-asp-area="Admin" asp-controller="AdminAccounts" asp-action="Create">
+            
+            <span class="text bg-gradient-success">Thêm mới</span>
+        </a>
+   
+   
+        
+       
+        <div class="table-responsive">
+            <select style="width:200px" id="idrole" name="idrole" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm border-left-dark animated--grow-in" asp-items="ViewBag.QuyenTruyCap">
+                <option value="0" disabled selected>Chọn quyền truy cập</option>
+            </select>
+            <select style="width:200px" id="idstatus" name="idstatus" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm border-left-dark animated--grow-in" asp-items="ViewBag.lsTrangThai">
+                <option value="0" disabled selected>Chọn trạng thái</option>
+            </select>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Phone</th>
+                        <th>PassWord</th>
+                        <th>Salt</th>
+                        <th>Active</th>
+                        <th>FullName</th>
+                        <th>LastLogin</th>
+                        <th>CreateDate</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Phone</th>
+                        <th>PassWord</th>
+                        <th>Salt</th>
+                        <th>Active</th>
+                        <th>FullName</th>
+                        <th>LastLogin</th>
+                        <th>CreateDate</th>
+                        <th>Role</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.AccountId</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Password</td>
+                                <td>@item.Salt</td>
+                                <td>@item.Active</td>
+                                <td>@item.FullName</td>
+                                <td>@item.LastLogin</td>
+                                <td>@item.CreateDate</td>
+                                <td>@item.Role</td>
+                                <td>
+                                    <a class="btn btn-success btn-icon-split" asp-asp-area="Admin" asp-controller="AdminRoles" asp-action="Details" asp-route-id="@item.RoleId">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text">View</span>
+                                    </a>
+                                    <a class="btn btn-info btn-icon-split" asp-asp-area="Admin" asp-controller="AdminRoles" asp-action="Edit" asp-route-id="@item.RoleId">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="text">Edit</span>
+                                    </a>
+                                    <a class="btn btn-danger btn-icon-split" asp-asp-area="Admin" asp-controller="AdminRoles" asp-action="Delete" asp-route-id="@item.RoleId">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                        <span class="text">Delete</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
