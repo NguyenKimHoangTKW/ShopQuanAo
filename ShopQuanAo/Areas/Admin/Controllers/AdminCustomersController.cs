@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopQuanAo.Entities;
-
+using PagedList;
 namespace ShopQuanAo.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -20,11 +20,15 @@ namespace ShopQuanAo.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminCustomers
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? page)
         {
-              return _context.Customers != null ? 
-                          View(await _context.Customers.ToListAsync()) :
-                          Problem("Entity set 'dbMarketContext.Customers'  is null.");
+            var pageNumber = page == null || page <= 0 ? 1: page.Value;
+            var pageSize = 20;
+            var lsCustomer = _context.Customers.AsNoTracking().OrderByDescending(x => x.CreateDate);
+            PagedList<Customer> models = new PagedList<Customer>(lsCustomer,pageNumber,pageSize);
+            ViewBag.CurrentPage = pageNumber;
+            return View(models);
+
         }
 
         // GET: Admin/AdminCustomers/Details/5

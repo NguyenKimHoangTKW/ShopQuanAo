@@ -1,12 +1,13 @@
-﻿@model IEnumerable<ShopQuanAo.Entities.Customer>
-
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<ShopQuanAo.Entities.Customer>
 @{
-    ViewData["Title"] = "Danh sách khách hàng";
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách khách hàng" + CurrentPage;
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example: page @CurrentPage</h6>
     </div>
     <div class="card-body">
         <a class="btn btn-light btn-icon-split" asp-asp-area="Admin" asp-controller="AdminCustomers" asp-action="Create">
@@ -97,7 +98,7 @@
             }
         }
     </tbody>
-</table>
 
+</table>
     </tbody>
 </table>
